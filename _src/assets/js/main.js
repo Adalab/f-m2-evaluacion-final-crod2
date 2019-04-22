@@ -12,8 +12,12 @@ const url = 'http://api.tvmaze.com/search/shows?q='
 
 function getShows() {
     const userSearch = input.value;
-    
-    //fetch(`${url}${userSearch}`)
+    fetch(`${url}${userSearch}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    }
+        )
 }
 
 /* Para construir la URL de búsqueda necesitaremos recoger el texto que ha introducido el usuario en el campo de búsqueda. */
