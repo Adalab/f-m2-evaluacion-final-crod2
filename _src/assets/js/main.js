@@ -15,7 +15,6 @@ function getShows() {
     .then(response => response.json())
     .then(data => {
         for (const item of data) {
-            console.log(item);
             const newItem = document.createElement('li');
             newItem.classList.add('results__item');
             const subtitle = document.createElement('h2');
@@ -23,8 +22,8 @@ function getShows() {
             const newName = document.createTextNode(item.show.name);
             const img = document.createElement('img');
             img.classList.add('item__img');
-            if (data.image === null) {
-                img.src = 'https://via.placeholder.com/250x250/';
+            if (item.show.image === null) {
+                img.src = 'https://via.placeholder.com/210x295/';
             } else {
                 img.src = item.show.image.medium;
             }
@@ -32,8 +31,17 @@ function getShows() {
             newItem.appendChild(subtitle);
             newItem.appendChild(img);
             list.appendChild(newItem);
+            newItem.addEventListener('click', changeColor);
         }
     })
+}
+
+function changeColor() {
+    if (event.currentTarget.classList.contains('favourites')) {
+        event.currentTarget.classList.remove('favourites');
+    } else {
+        event.currentTarget.classList.add('favourites');
+    }
 }
 
 button.addEventListener('click', getShows);
