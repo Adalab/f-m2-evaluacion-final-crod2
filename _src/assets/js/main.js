@@ -9,8 +9,6 @@ const list = document.querySelector('.results__container--list');
 
 const url = 'http://api.tvmaze.com/search/shows?q='
 
-/* Por cada show contenido en el resultado de búsqueda debemos pintar una tarjeta donde mostramos una imagen de la serie y el título. */
-
 function getShows() {
     const userSearch = input.value;
     fetch(`${url}${userSearch}`)
@@ -30,11 +28,12 @@ function getShows() {
             } else {
                 img.src = item.show.image.medium;
             }
+            subtitle.appendChild(newName);
+            newItem.appendChild(subtitle);
+            newItem.appendChild(img);
+            list.appendChild(newItem);
         }
     })
 }
-
-
-
 
 button.addEventListener('click', getShows);
