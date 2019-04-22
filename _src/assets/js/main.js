@@ -54,18 +54,15 @@ function favs(triggerElement) {
         name: title,
         image: img
     })
-    for (const show of favShows) {
-        const newShow = document.createElement('li');
-        const favSubtitle = document.createElement('h4');
-        const favName = document.createTextNode(show.name);
-        const favImg = document.createElement('img');
-        favImg.src = show.image;
-    
-        favSubtitle.appendChild(favName);
-        newShow.appendChild(favSubtitle);
-        newShow.appendChild(favImg);
-        favList.appendChild(newShow);
-    }
+    const newShow = document.createElement('li');
+    const favSubtitle = document.createElement('h4');
+    const favName = document.createTextNode(title);
+    const favImg = document.createElement('img');
+    favImg.src = img;
+    favSubtitle.appendChild(favName);
+    newShow.appendChild(favSubtitle);
+    newShow.appendChild(favImg);
+    favList.appendChild(newShow); 
 }
 
 button.addEventListener('click', getShows);
