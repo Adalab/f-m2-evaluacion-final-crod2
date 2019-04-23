@@ -57,7 +57,7 @@ function favs(event) {
     favList.innerHTML = '';
     for (const show of favShows) {
         const newShow = document.createElement('li');
-        const favSubtitle = document.createElement('h4');
+        const favSubtitle = document.createElement('h3');
         const favName = document.createTextNode(show.name);
         const favImg = document.createElement('img');
         favImg.src = show.image;
@@ -76,7 +76,7 @@ const getData = () => {
         favShows = JSON.parse(localStorage.getItem('saved__data'));
         for (const savedItem of favShows) {
             const newItem = document.createElement('li');
-            const itemSubtitle = document.createElement('h4');
+            const itemSubtitle = document.createElement('h3');
             const itemName = document.createTextNode(savedItem.name);
             const itemImg = document.createElement('img');
             itemImg.src = savedItem.image;
