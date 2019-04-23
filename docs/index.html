@@ -3,28 +3,33 @@
     
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ejercicio de evaluación final - Módulo 2</title>
         <link rel="icon" href="favicon.png"
         />
+        <link href="https://fonts.googleapis.com/css?family=Slackey" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/main.css">
     </head>
     
     <body>
         <div class="page">
             <main>
-                <div class="search__container">
-                     <h1 class="search__container--title">Buscador de series</h1>
+                <div class="container">
+                     <h1 class="container__title">Buscador de series</h1>
 
-                    <input type="text" class="search__container--input">
-                    <button class="search__container--button">Search</button>
+                    <div class="search__container">
+                        <input type="text" class="search__container--input">
+                        <button class="search__container--button">Search</button>
+                    </div>
+                    <div class="favs__container">
+                         <h2 class="favs__container--title">Mis series favoritas</h2>
+
+                        <ul class="favs__container--list"></ul>
+                    </div>
                 </div>
                 <div class="results__container">
                     <ul class="results__container--list"></ul>
-                </div>
-                <div class="favs__container">
-                     <h3 class="favs__container--title">Tus favoritos</h3>
-
-                    <ul class="favs__container--list"></ul>
                 </div>
             </main>
         </div>
