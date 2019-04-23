@@ -1,5 +1,10 @@
 body {
-    background: pink;
+    background: rgb(252, 244, 245);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
 }
 
 .item__img {

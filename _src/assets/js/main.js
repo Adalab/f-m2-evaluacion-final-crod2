@@ -1,6 +1,6 @@
 'use strict';
 
-const searchContainer = document.querySelector('.search__container');
+const searchContainer = document.querySelector('.container');
 const title = document.querySelector('.search__container--title');
 const input = document.querySelector('.search__container--input');
 const button = document.querySelector('.search__container--button');
@@ -19,7 +19,7 @@ function getShows() {
             for (const item of data) {
                 const newItem = document.createElement('li');
                 newItem.classList.add('results__item');
-                newItem.addEventListener('click', changeColor);
+                newItem.addEventListener('click', favs);
                 const subtitle = document.createElement('h2');
                 subtitle.classList.add('item__subtitle');
                 const newName = document.createTextNode(item.show.name);
@@ -37,21 +37,23 @@ function getShows() {
             }
         })
 }
-function changeColor() {
+
+function favs(event) {
+    event.currentTarget.classList.toggle('favourites');
+    const title = event.currentTarget.querySelector('h2').innerHTML;
+    const img = event.currentTarget.querySelector('img').src;
     if (event.currentTarget.classList.contains('favourites')) {
-        event.currentTarget.classList.remove('favourites');
+        favShows.push({
+            name: title,
+            image: img
+        })
     } else {
-        event.currentTarget.classList.add('favourites');
+        favShows.pop({
+            name: title,
+            image: img
+        })
     }
-    favs(event.currentTarget);
-}
-function favs(triggerElement) {
-    const title = triggerElement.querySelector('h2').innerHTML;
-    const img = triggerElement.querySelector('img').src;
-    favShows.push({
-        name: title,
-        image: img
-    })
+   
     favList.innerHTML = '';
     for (const show of favShows) {
         const newShow = document.createElement('li');
