@@ -10,9 +10,11 @@ const list = document.querySelector('.results__container--list');
 const url = 'http://api.tvmaze.com/search/shows?q='
 const favShows = [];
 const favList = document.querySelector('.favs__container--list');
+const savedData = JSON.parse(localStorage.getItem('saved__data'));
 
 function getShows() {
     const userSearch = input.value;
+    list.innerHTML = '';
     fetch(`${url}${userSearch}`)
     .then(response => response.json())
     .then(data => {
@@ -33,7 +35,7 @@ function getShows() {
             subtitle.appendChild(newName);
             newItem.appendChild(subtitle);
             newItem.appendChild(img);
-            favList.appendChild(newItem);
+            list.appendChild(newItem);
         }
     })
 }
@@ -54,15 +56,19 @@ function favs(triggerElement) {
         name: title,
         image: img
     })
+    favList.innerHTML = '';
+    for (const show of favShows) {
     const newShow = document.createElement('li');
     const favSubtitle = document.createElement('h4');
-    const favName = document.createTextNode(title);
+    const favName = document.createTextNode(show.name);
     const favImg = document.createElement('img');
-    favImg.src = img;
+    favImg.src = show.image;
     favSubtitle.appendChild(favName);
     newShow.appendChild(favSubtitle);
     newShow.appendChild(favImg);
     favList.appendChild(newShow); 
+    }
+    localStorage.getItem('saved__data', JSON.stringify(favShows));
 }
 
 button.addEventListener('click', getShows);
