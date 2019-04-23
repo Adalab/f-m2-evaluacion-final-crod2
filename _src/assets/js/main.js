@@ -8,9 +8,9 @@ const resultsContainer = document.querySelector('.results__container');
 const list = document.querySelector('.results__container--list');
 
 const url = 'http://api.tvmaze.com/search/shows?q='
-const favShows = [];
+let favShows = [];
 const favList = document.querySelector('.favs__container--list');
-const savedData = JSON.parse(localStorage.getItem('saved__data'));
+
 
 function getShows() {
     const userSearch = input.value;
@@ -68,7 +68,30 @@ function favs(triggerElement) {
     newShow.appendChild(favImg);
     favList.appendChild(newShow); 
     }
-    localStorage.getItem('saved__data', JSON.stringify(favShows));
+    savedData();
 }
 
+const savedData = () => {
+    localStorage.setItem('saved__data', JSON.stringify(favShows));
+}
+
+const getData = () => { 
+    if (localStorage.getItem('saved__data') !== null) {
+        favShows = JSON.parse(localStorage.getItem('saved__data'));
+        for (const savedItem of favShows) {
+            const newItem = document.createElement('li');
+            const itemSubtitle = document.createElement('h4');
+            const itemName = document.createTextNode(savedItem.name);
+            const itemImg = document.createElement('img');
+            itemImg.src = savedItem.image;
+            itemSubtitle.appendChild(itemName);
+            newItem.appendChild(itemSubtitle);
+            newItem.appendChild(itemImg);
+            favList.appendChild(newItem); 
+            }
+        
+    }
+}
+
+getData();
 button.addEventListener('click', getShows);
